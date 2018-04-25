@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ZaakDocumentDragAndDrop.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StandaardZaakDocumentServicesVrijBerichtService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/VrijBerichtService.svc</Value>
+    </Setting>
+    <Setting Name="StandaardZaakDocumentServicesOntvangAsynchroonService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/OntvangAsynchroonService.svc</Value>
+    </Setting>
+    <Setting Name="StandaardZaakDocumentServicesBeantwoordVraagService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/BeantwoordVraagService.svc</Value>
+    </Setting>
+    <Setting Name="GemeenteCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
