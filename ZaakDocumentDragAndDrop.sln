@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaakDocumentDragAndDrop", "ZaakDocumentDragAndDrop\ZaakDocumentDragAndDrop.csproj", "{FB379773-3040-48F3-ACD5-526E8D07DF47}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ZaakDocumentDragAndDropSetup", "ZaakDocumentDragAndDropSetup\ZaakDocumentManagerSetup.vdproj", "{99D928BE-B0E3-41A8-A49C-05905F6EC777}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ZaakDocumentDragAndDropSetup", "ZaakDocumentDragAndDropSetup\ZaakDocumentDragAndDropSetup.vdproj", "{64E782B5-5F58-4CBC-AFE9-552FF2CFBC3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,8 @@ Global
 		{FB379773-3040-48F3-ACD5-526E8D07DF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB379773-3040-48F3-ACD5-526E8D07DF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB379773-3040-48F3-ACD5-526E8D07DF47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99D928BE-B0E3-41A8-A49C-05905F6EC777}.Debug|Any CPU.ActiveCfg = Debug
-		{99D928BE-B0E3-41A8-A49C-05905F6EC777}.Debug|Any CPU.Build.0 = Debug
-		{99D928BE-B0E3-41A8-A49C-05905F6EC777}.Release|Any CPU.ActiveCfg = Release
-		{99D928BE-B0E3-41A8-A49C-05905F6EC777}.Release|Any CPU.Build.0 = Release
+		{64E782B5-5F58-4CBC-AFE9-552FF2CFBC3C}.Debug|Any CPU.ActiveCfg = Debug
+		{64E782B5-5F58-4CBC-AFE9-552FF2CFBC3C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
