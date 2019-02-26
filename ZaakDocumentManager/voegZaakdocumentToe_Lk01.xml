@@ -5,7 +5,7 @@
             <StUF:berichtcode>Lk01</StUF:berichtcode>
             <StUF:zender>
                <StUF:organisatie>1900</StUF:organisatie>
-               <StUF:applicatie>ZaakDocumentDragAndDrop</StUF:applicatie>
+               <StUF:applicatie>ZaakDocumentManager</StUF:applicatie>
             </StUF:zender>
             <StUF:ontvanger>
                <StUF:organisatie>1900</StUF:organisatie>

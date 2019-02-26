@@ -7,7 +7,7 @@ using System.Text;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace ZaakDocumentDragAndDrop
+namespace ZaakDocumentManager
 {
 
     public class OutlookDataObject : System.Windows.Forms.IDataObject

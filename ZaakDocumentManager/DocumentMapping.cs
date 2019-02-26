@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 
-namespace ZaakDocumentDragAndDrop
+namespace ZaakDocumentManager
 {
     internal class DocumentMapping
     {
@@ -10,10 +10,12 @@ namespace ZaakDocumentDragAndDrop
         private string mimetype;
         public string Documenttype;
         public DateTime CreationTime;
-        public string Titel;
+        // public string Titel;
         public string Taal;
         public string Vertrouwelijkheid;
         public string Mimetype;
+        // Goed, we hebben nu titel en name maar in één gestopt... 
+        // Dit omdat het raad deed
         public string Name;
         public string Formaat;
 
@@ -24,11 +26,15 @@ namespace ZaakDocumentDragAndDrop
 
             this.Documenttype = "documenttype";
             this.CreationTime = creationdate;
-            this.Titel = DateTime.Now.ToString("yyyyMMddhhmmss") + "-" + documentfilename;
+            
+            //this.Titel = DateTime.Now.ToString("yyyyMMddhhmmss") + "-" + documentfilename;
+            //this.Titel = documentfilename;
             this.Taal = "nld";
             this.Vertrouwelijkheid = "VERTROUWELIJK";
             this.Mimetype = mimetype;
-            this.Name = DateTime.Now.ToString("yyyyMMddhhmmss") + "-" + documentfilename;
+
+            //this.Name = DateTime.Now.ToString("yyyyMMddhhmmss") + "-" + documentfilename;
+            this.Name = documentfilename;
             this.Formaat = documentfilename.Contains(".") ? documentfilename.Substring(documentfilename.IndexOf(".")) : documentfilename;
 
             var config = new System.Xml.XmlDocument();
@@ -61,8 +67,8 @@ namespace ZaakDocumentDragAndDrop
                     && document.Attributes["matchfield"].Value == "naam"
                     && Name.ToLower().Contains(document.Attributes["matchvalue"].Value.ToLower() ))
                 {
-                    var titelnode = document.SelectSingleNode("titel");
-                    if (titelnode != null) Titel = titelnode.InnerText;
+                    //var titelnode = document.SelectSingleNode("titel");
+                    //if (titelnode != null) Titel = titelnode.InnerText;
                     var typenode = document.SelectSingleNode("type");
                     if (typenode != null) Documenttype = typenode.InnerText;
                     var vertrouwelijkheidnode = document.SelectSingleNode("vertrouwelijkheid");

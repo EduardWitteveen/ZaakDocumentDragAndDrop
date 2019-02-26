@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
-namespace ZaakDocumentDragAndDrop
+namespace ZaakDocumentManager
 {
     public class ZDSSoapService
     {
@@ -95,19 +96,39 @@ namespace ZaakDocumentDragAndDrop
 
             using (System.IO.Stream stream = request.GetRequestStream())
             {
-                requestdocument.Save(stream);
-            }
-            using (System.Net.WebResponse response = request.GetResponse())
-            {
-                using (System.IO.StreamReader rd = new System.IO.StreamReader(response.GetResponseStream()))
-                {                    
-                    var responsedocument  = new ZDSXmlDocument(rd);
+                try
+                {
+                    requestdocument.Save(stream);
+                    using (System.Net.WebResponse response = request.GetResponse())
+                    {
+                        using (System.IO.StreamReader rd = new System.IO.StreamReader(response.GetResponseStream()))
+                        {
+                            var responsedocument = new ZDSXmlDocument(rd);
 
-                    System.Diagnostics.Debug.WriteLine("--------------------------------------------------------------");
-                    System.Diagnostics.Debug.WriteLine("response xml:");
-                    System.Diagnostics.Debug.WriteLine(responsedocument.OuterXml);
-                    System.Diagnostics.Debug.WriteLine("--------------------------------------------------------------");
-                    return responsedocument;
+                            System.Diagnostics.Debug.WriteLine("--------------------------------------------------------------");
+                            System.Diagnostics.Debug.WriteLine("response xml:");
+                            System.Diagnostics.Debug.WriteLine(responsedocument.OuterXml);
+                            System.Diagnostics.Debug.WriteLine("--------------------------------------------------------------");
+                            return responsedocument;
+                        }
+                    }
+                }
+                catch (System.Net.WebException wex)
+                {
+                    var errorstream = wex.Response.GetResponseStream();
+                    var errorreader = new System.IO.StreamReader(errorstream, Encoding.UTF8);
+                    String errormessage = errorreader.ReadToEnd();
+
+                    MessageBox.Show(
+                            "soap url: " + soapurl + "\n" +
+                            "soap action: " + soapaction + "\n" +
+                            "\n-- request ---------------------------------------------------------------------\n" +
+                            requestdocument.OuterXml + "\n" +
+                            "\n\n-- response " + wex.Message + "---------------------------------------------------------------------\n" +
+                            errormessage,
+                            wex.ToString()
+                        );
+                    throw wex;
                 }
             }
         }

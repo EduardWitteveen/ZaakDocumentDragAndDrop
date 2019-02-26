@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZaakDocumentDragAndDrop.Properties {
+namespace ZaakDocumentManager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -50,15 +50,6 @@ namespace ZaakDocumentDragAndDrop.Properties {
         public string StandaardZaakDocumentServicesBeantwoordVraagService {
             get {
                 return ((string)(this["StandaardZaakDocumentServicesBeantwoordVraagService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9999")]
-        public string GemeenteCode {
-            get {
-                return ((string)(this["GemeenteCode"]));
             }
         }
     }

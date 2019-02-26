@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ZaakDocumentDragAndDrop
+namespace ZaakDocumentManager
 {
     public partial class Main : Form
     {
@@ -19,10 +19,10 @@ namespace ZaakDocumentDragAndDrop
 
         private void txtZaakNummer_TextChanged(object sender, EventArgs e)
         {
-            //Refresh();
+            // RefreshData();
         }
 
-        void Refresh()
+        void RefreshData()
         {
             txtZaakTypeOmschrijving.Text = "";
             txtZaaktypeCode.Text = "";
@@ -72,12 +72,13 @@ namespace ZaakDocumentDragAndDrop
                         var documentdata = System.IO.File.ReadAllBytes(documentfile.FullName);
 
                         var documentmapping = new DocumentMapping(txtZaaktypeCode.Text, documentfile.Name, documentfile.CreationTime);
+
                         zds.VoegZaakdocumentToe(
                             txtZaakIdentificatie.Text,
                             zaakdocumentid,
                             documentmapping.Documenttype,
                             documentmapping.CreationTime,
-                            documentmapping.Titel,
+                            //documentmapping.Titel,
                             documentmapping.Formaat,
                             documentmapping.Taal,
                             documentmapping.Vertrouwelijkheid,
@@ -105,7 +106,7 @@ namespace ZaakDocumentDragAndDrop
                             zaakdocumentid,
                             documentmapping.Documenttype,
                             documentmapping.CreationTime,
-                            documentmapping.Titel,
+                            /* documentmapping.Titel, */
                             documentmapping.Formaat,
                             documentmapping.Taal,
                             documentmapping.Vertrouwelijkheid,
@@ -114,13 +115,7 @@ namespace ZaakDocumentDragAndDrop
                             documentdata);
                     }
                 }
-                else throw new Exception("unexpected format in drap/drop");
-
-                Cursor.Current = Cursors.WaitCursor;
-                System.Threading.Thread.Sleep(500);
-                System.Threading.Thread.Sleep(500);
-                System.Threading.Thread.Sleep(500);
-                Cursor.Current = Cursors.Default;
+                else throw new Exception("unexpected format in drap/drop");            
 #if !DEBUG
             }
             catch (Exception ex)
@@ -128,7 +123,7 @@ namespace ZaakDocumentDragAndDrop
                 MessageBox.Show(ex.Message, "Fout bij toevoegen van documenten aan de zaak", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 #endif
-            Refresh();
+            RefreshData();
 
         }
 
@@ -150,14 +145,14 @@ namespace ZaakDocumentDragAndDrop
         private void btnPaste_Click(object sender, EventArgs e)
         {
             txtZaakIdentificatie.Text = Clipboard.GetText();
-            Refresh();
+            RefreshData();
         }
 
         private void txtZaakIdentificatie_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Refresh();
+                RefreshData();
             }
         }
     }

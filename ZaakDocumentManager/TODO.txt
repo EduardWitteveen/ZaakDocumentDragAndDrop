@@ -1,2 +1,3 @@
-﻿- unieke filenaam per zaak
+﻿- zetten van de documenttypes op basis van documentmapping.xml
+- unieke filenaam per zaak
 - validatie tov dsp-inavigator.xml

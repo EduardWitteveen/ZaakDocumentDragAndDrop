@@ -1,4 +1,4 @@
-﻿namespace ZaakDocumentDragAndDrop
+﻿namespace ZaakDocumentManager
 {
     partial class Main
     {
@@ -75,9 +75,9 @@
             // 
             this.txtZaaktypeCode.BackColor = System.Drawing.SystemColors.Control;
             this.txtZaaktypeCode.Enabled = false;
-            this.txtZaaktypeCode.Location = new System.Drawing.Point(218, 65);
+            this.txtZaaktypeCode.Location = new System.Drawing.Point(202, 65);
             this.txtZaaktypeCode.Name = "txtZaaktypeCode";
-            this.txtZaaktypeCode.Size = new System.Drawing.Size(62, 20);
+            this.txtZaaktypeCode.Size = new System.Drawing.Size(78, 20);
             this.txtZaaktypeCode.TabIndex = 11;
             // 
             // btnPaste
@@ -114,7 +114,7 @@
             this.txtZaakTypeOmschrijving.Enabled = false;
             this.txtZaakTypeOmschrijving.Location = new System.Drawing.Point(12, 64);
             this.txtZaakTypeOmschrijving.Name = "txtZaakTypeOmschrijving";
-            this.txtZaakTypeOmschrijving.Size = new System.Drawing.Size(200, 20);
+            this.txtZaakTypeOmschrijving.Size = new System.Drawing.Size(184, 20);
             this.txtZaakTypeOmschrijving.TabIndex = 7;
             // 
             // label3

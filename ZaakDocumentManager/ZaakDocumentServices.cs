@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace ZaakDocumentDragAndDrop
+namespace ZaakDocumentManager
 {
     public class Zaak
     {
@@ -48,10 +48,11 @@ namespace ZaakDocumentDragAndDrop
                          + ", " +
                         document.GetNodeText("//ZKN:object/ZKN:heeftAlsInitiator/ZKN:gerelateerde/ZKN:natuurlijkPersoon/BG:voorletters");
                 }
-                else
+                else if (document.NodeExists("//ZKN:object/ZKN:heeftAlsInitiator/ZKN:gerelateerde/ZKN:nietNatuurlijkPersoon"))
                 {
                     return document.GetNodeText("//ZKN:object/ZKN:heeftAlsInitiator/ZKN:gerelateerde/ZKN:nietNatuurlijkPersoon/BG:statutaireNaam");
                 }
+                else return "geen natuurlijkPersoon/nietNatuurlijkPersoon als initiator";
             }
         }
     }
@@ -112,9 +113,6 @@ namespace ZaakDocumentDragAndDrop
                 "http://www.egem.nl/StUF/sector/zkn/0310/geefZaakdetails_Lv01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("geefZaakdetails_Lv01.xml");
 
-            requestdocument.SetNodeText("//StUF:zender/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-            requestdocument.SetNodeText("//StUF:ontvanger/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//ZKN:gelijk/ZKN:identificatie", zaakidentificatie);
@@ -128,9 +126,6 @@ namespace ZaakDocumentDragAndDrop
                 Properties.Settings.Default.StandaardZaakDocumentServicesBeantwoordVraagService,
                 "http://www.egem.nl/StUF/sector/zkn/0310/geefLijstZaakdocumenten_Lv01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("geefLijstZaakdocumenten_Lv01.xml");
-
-            requestdocument.SetNodeText("//StUF:zender/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-            requestdocument.SetNodeText("//StUF:ontvanger/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
 
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
@@ -156,9 +151,6 @@ namespace ZaakDocumentDragAndDrop
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("genereerDocumentIdentificatie_Di02.xml");
             var responsedocument = soapservice.PerformRequest(requestdocument);
 
-            requestdocument.SetNodeText("//StUF:zender/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-            requestdocument.SetNodeText("//StUF:ontvanger/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-
             return responsedocument.GetNodeText("//ZKN:document/ZKN:identificatie");
         }
 
@@ -166,7 +158,7 @@ namespace ZaakDocumentDragAndDrop
             string zaakdocumentidentificatie, 
             string zaakdocumenttype,
             DateTime creatiedatum,
-            string titel,
+            /* string titel, */
             string formaat,
             string taal,
             string vertrouwelijkheid,
@@ -175,13 +167,35 @@ namespace ZaakDocumentDragAndDrop
             byte[] documentdata
             )
         {
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            //TODO: check if exists
+            var documenten = GeefLijstZaakdocumenten(zaakidentificatie);
+            var dict = new Dictionary<string, ZaakDocument>();
+            foreach(var document in documenten)
+            {
+                if(!dict.ContainsKey(document.Titel)) {
+                    dict.Add(document.Titel, document);
+                }                
+            }
+            if(dict.ContainsKey(bestandsnaam))
+            {
+                var name = System.IO.Path.GetFileNameWithoutExtension(bestandsnaam);
+                var extensie = System.IO.Path.GetExtension(bestandsnaam);
+                int i = 1;
+                do
+                {
+                    bestandsnaam = name + "_" + i + extensie;
+                    i++;
+                }
+                while (dict.ContainsKey(bestandsnaam));
+            }
+
             var soapservice = new ZDSSoapService(
                 Properties.Settings.Default.StandaardZaakDocumentServicesOntvangAsynchroonService,
                 "http://www.egem.nl/StUF/sector/zkn/0310/voegZaakdocumentToe_Lk01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("voegZaakdocumentToe_Lk01.xml");
-
-            requestdocument.SetNodeText("//StUF:zender/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
-            requestdocument.SetNodeText("//StUF:ontvanger/StUF:organisatie", Properties.Settings.Default.GemeenteCode);
 
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
@@ -189,7 +203,7 @@ namespace ZaakDocumentDragAndDrop
             requestdocument.SetNodeText("//ZKN:object/ZKN:identificatie", zaakdocumentidentificatie);
             requestdocument.SetNodeText("//ZKN:object/ZKN:dct.omschrijving", zaakdocumenttype);
             requestdocument.SetNodeText("//ZKN:object/ZKN:creatiedatum", creatiedatum.ToString("yyyyMMdd"));
-            requestdocument.SetNodeText("//ZKN:object/ZKN:titel", titel);
+            requestdocument.SetNodeText("//ZKN:object/ZKN:titel", bestandsnaam);
             requestdocument.SetNodeText("//ZKN:object/ZKN:formaat", formaat);
             requestdocument.SetNodeText("//ZKN:object/ZKN:taal", taal);
             requestdocument.SetNodeText("//ZKN:object/ZKN:vertrouwelijkAanduiding", vertrouwelijkheid);
@@ -202,6 +216,22 @@ namespace ZaakDocumentDragAndDrop
             requestdocument.SetNodeText("//ZKN:object/ZKN:isRelevantVoor/ZKN:gerelateerde/ZKN:identificatie", zaakidentificatie);
 
             var responsedocument = soapservice.PerformRequest(requestdocument);
+
+            do
+            {
+                System.Threading.Thread.Sleep(500);
+
+                documenten = GeefLijstZaakdocumenten(zaakidentificatie);
+                dict = new Dictionary<string, ZaakDocument>();
+                foreach (var document in documenten)
+                {
+                    if(!dict.ContainsKey(document.Titel)) {
+                        dict.Add(document.Titel, document);
+                    }                    
+                }
+            }
+            while (!dict.ContainsKey(bestandsnaam));
+            Cursor.Current = Cursors.Default;
         }
     }
 }
