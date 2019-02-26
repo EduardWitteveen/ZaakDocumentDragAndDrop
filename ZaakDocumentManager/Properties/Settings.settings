@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="StandaardZaakDocumentServicesVrijBerichtService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/VrijBerichtService.svc</Value>
+      <Value Profile="(Default)">http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/VrijeBerichten.php</Value>
     </Setting>
     <Setting Name="StandaardZaakDocumentServicesOntvangAsynchroonService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/OntvangAsynchroonService.svc</Value>
+      <Value Profile="(Default)">http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/OntvangAsynchroon.php</Value>
     </Setting>
     <Setting Name="StandaardZaakDocumentServicesBeantwoordVraagService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://zaaksysteem/ZaakDocumentServices/BeantwoordVraagService.svc</Value>
+      <Value Profile="(Default)">http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/BeantwoordVraag.php</Value>
     </Setting>
     <Setting Name="GemeenteCode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">9999</Value>

@@ -50,10 +50,10 @@ namespace ZaakDocumentManager
                 return SelectSingleNode(xpath, NamespaceManager) != null;
             }
 
-            public void SetNodeText(string xpath, string value)
+            public void SetNodeText(string xpath, string value,  bool checksinglevalue=true)
             {
                 var nodes = SelectNodes(xpath, NamespaceManager);
-                if(nodes.Count != 1) throw new Exception("xpath: " + xpath + " did not return a single node (count:" + nodes.Count+ ")");
+                if(checksinglevalue && nodes.Count != 1) throw new Exception("xpath: " + xpath + " did not return a single node (count:" + nodes.Count+ ")");
                 XmlNode node = nodes[0];
                 node.InnerText = value;
             }

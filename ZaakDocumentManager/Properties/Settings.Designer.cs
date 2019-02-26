@@ -26,7 +26,8 @@ namespace ZaakDocumentManager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zaaksysteem/ZaakDocumentServices/VrijBerichtService.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/VrijeBerich" +
+            "ten.php")]
         public string StandaardZaakDocumentServicesVrijBerichtService {
             get {
                 return ((string)(this["StandaardZaakDocumentServicesVrijBerichtService"]));
@@ -36,7 +37,8 @@ namespace ZaakDocumentManager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zaaksysteem/ZaakDocumentServices/OntvangAsynchroonService.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/OntvangAsyn" +
+            "chroon.php")]
         public string StandaardZaakDocumentServicesOntvangAsynchroonService {
             get {
                 return ((string)(this["StandaardZaakDocumentServicesOntvangAsynchroonService"]));
@@ -46,10 +48,20 @@ namespace ZaakDocumentManager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zaaksysteem/ZaakDocumentServices/BeantwoordVraagService.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://webbeweging.nl/wp-content/plugins/zaaksysteem-stub/service/zds/BeantwoordV" +
+            "raag.php")]
         public string StandaardZaakDocumentServicesBeantwoordVraagService {
             get {
                 return ((string)(this["StandaardZaakDocumentServicesBeantwoordVraagService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9999")]
+        public string GemeenteCode {
+            get {
+                return ((string)(this["GemeenteCode"]));
             }
         }
     }

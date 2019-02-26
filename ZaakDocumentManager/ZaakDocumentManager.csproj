@@ -113,9 +113,6 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dsp-inavigator.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="geefLijstZaakdocumenten_Lv01.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

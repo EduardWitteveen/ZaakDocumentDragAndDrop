@@ -113,6 +113,7 @@ namespace ZaakDocumentManager
                 "http://www.egem.nl/StUF/sector/zkn/0310/geefZaakdetails_Lv01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("geefZaakdetails_Lv01.xml");
 
+            requestdocument.SetNodeText("//StUF:organisatie", Properties.Settings.Default.GemeenteCode, false);
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//ZKN:gelijk/ZKN:identificatie", zaakidentificatie);
@@ -127,6 +128,7 @@ namespace ZaakDocumentManager
                 "http://www.egem.nl/StUF/sector/zkn/0310/geefLijstZaakdocumenten_Lv01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("geefLijstZaakdocumenten_Lv01.xml");
 
+            requestdocument.SetNodeText("//StUF:organisatie", Properties.Settings.Default.GemeenteCode, false);        
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//ZKN:gelijk/ZKN:identificatie", zaakidentificatie);
@@ -149,6 +151,7 @@ namespace ZaakDocumentManager
                 Properties.Settings.Default.StandaardZaakDocumentServicesVrijBerichtService,
                 "http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("genereerDocumentIdentificatie_Di02.xml");
+            requestdocument.SetNodeText("//StUF:organisatie", Properties.Settings.Default.GemeenteCode, false);
             var responsedocument = soapservice.PerformRequest(requestdocument);
 
             return responsedocument.GetNodeText("//ZKN:document/ZKN:identificatie");
@@ -197,6 +200,7 @@ namespace ZaakDocumentManager
                 "http://www.egem.nl/StUF/sector/zkn/0310/voegZaakdocumentToe_Lk01");
             var requestdocument = new ZDSSoapService.ZDSXmlDocument("voegZaakdocumentToe_Lk01.xml");
 
+            requestdocument.SetNodeText("//StUF:organisatie", Properties.Settings.Default.GemeenteCode, false);
             requestdocument.SetNodeText("//StUF:referentienummer", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
             requestdocument.SetNodeText("//StUF:tijdstipBericht", DateTime.Now.ToString("yyyyMMddhhmmssfff"));
 
